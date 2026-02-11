@@ -6,12 +6,6 @@
 
 <title>Mr.Peeky — Coming Soon</title>
 
-<!-- ✅ FAVICON (GitHub Pages friendly: NO leading /) -->
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-<!-- Optional PNG fallback (if you also upload favicon.png) -->
-<link rel="icon" type="image/png" href="favicon.png">
-
 <meta name="description" content="Mr.Peeky is coming soon. A playful character exploring a new world. Follow the journey and be part of what’s next.">
 
 <meta property="og:title" content="Mr.Peeky — Coming Soon">
@@ -72,7 +66,7 @@ height:100%;
 }
 
 /* LAYERS */
-.earth,.peeky,.heroMobile,.horizonGlow{z-index:10;}
+.earth,.horizonGlow{z-index:10;}
 .watermarkOverlay{z-index:15;}
 .brand{z-index:60;}
 .hello{z-index:70;}
@@ -80,12 +74,11 @@ height:100%;
 .footer{z-index:80;}
 .fadeBottom{z-index:90;}
 
-/* WATERMARK OVERLAY */
+/* WATERMARK */
 .watermarkOverlay{
 position:absolute;
 inset:0;
-background-image:url("watermark.png");
-background-repeat:repeat;
+background:url("watermark.png") repeat;
 background-size:220px 220px;
 opacity:.08;
 pointer-events:none;
@@ -117,60 +110,29 @@ rgba(0,180,255,.15) 35%,
 rgba(0,0,0,0) 70%);
 filter:blur(22px);
 animation:horizonPulse 2s ease-in-out infinite;
-pointer-events:none;
 }
 @keyframes horizonPulse{
 0%,100%{opacity:.5;}
 50%{opacity:.75;}
 }
 
-/* BRAND */
+/* LOGO CENTER */
 .brand{
 position:absolute;
-left:250px;
+left:50%;
 top:35%;
-transform:translateY(-50%) translateX(-12px);
+transform:translate(-50%,-50%) translateY(10px);
 opacity:0;
 transition:.9s;
 }
 .brand.show{
 opacity:1;
-transform:translateY(-50%) translateX(0);
+transform:translate(-50%,-50%) translateY(0);
 }
-.brand img{width:240px;}
-
-/* PEEKY */
-.peeky{
-position:absolute;
-left:50%;
-bottom:185px;
-transform:translateX(-50%) translateY(16px);
-width:520px;
-opacity:0;
-transition:.9s;
-}
-.peeky.show{
-opacity:1;
-transform:translateX(-50%) translateY(0);
-}
-
-/* MOBILE HERO */
-.heroMobile{
-display:none;
-position:absolute;
-left:50%;
-bottom:0;
-transform:translateX(-50%) translateY(16px);
-width:1200px;
-max-width:140vw;
-filter:drop-shadow(0 0 40px rgba(80,190,255,.55));
-opacity:0;
-transition:.9s;
-pointer-events:none;
-}
-.heroMobile.show{
-opacity:1;
-transform:translateX(-50%) translateY(0);
+.brand img{
+width:240px;
+display:block;
+filter:drop-shadow(0 16px 40px rgba(0,0,0,.35));
 }
 
 /* HELLO */
@@ -192,10 +154,7 @@ transition:.6s;
 }
 .hello.show{opacity:1;}
 
-.cursor{
-margin-left:8px;
-animation:blink .9s infinite;
-}
+.cursor{margin-left:8px;animation:blink .9s infinite;}
 @keyframes blink{50%{opacity:0;}}
 
 /* COMING */
@@ -223,7 +182,6 @@ font-size:42px;
 .igLink{
 display:inline-flex;
 align-items:center;
-justify-content:flex-end;
 gap:8px;
 margin-top:10px;
 color:white;
@@ -233,15 +191,13 @@ font-size:14px;
 }
 .igLink:hover{opacity:1;text-decoration:underline;}
 .igIcon{
-display:inline-flex;
-width:26px;
-height:26px;
+width:26px;height:26px;
+display:flex;
 align-items:center;
 justify-content:center;
 border-radius:50%;
-background:rgba(255,255,255,.10);
+background:rgba(255,255,255,.1);
 border:1px solid rgba(255,255,255,.18);
-box-shadow:0 0 18px rgba(0,0,0,.4);
 }
 
 /* FOOTER */
@@ -253,10 +209,9 @@ transform:translateX(-50%);
 font-size:11px;
 opacity:.45;
 color:white;
-pointer-events:none;
 }
 
-/* MICRO FADE */
+/* FADE */
 .fadeBottom{
 position:absolute;
 bottom:0;
@@ -264,23 +219,14 @@ left:0;
 width:100%;
 height:140px;
 background:linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,0));
-pointer-events:none;
 }
 
 /* MOBILE */
 @media(max-width:768px){
-.earth,.peeky,.horizonGlow{display:none;}
-
-.heroMobile{
-display:block;
-width:160vw;
-bottom:30px;
-}
+.earth,.horizonGlow{display:none;}
 
 .brand{
-left:50%;
 top:25%;
-transform:translateX(-50%);
 }
 .brand img{width:180px;}
 
@@ -291,13 +237,12 @@ bottom:58px;
 }
 
 .coming{
-right:55px;
+right:20px;
 top:10%;
 transform:none;
 }
 .coming h1{
 font-size:30px;
-letter-spacing:3px;
 }
 }
 </style>
@@ -314,11 +259,8 @@ letter-spacing:3px;
 <div class="horizonGlow"></div>
 
 <div class="brand" id="brand">
-<img src="logo.png" draggable="false" alt="">
+  <img src="logo.png" draggable="false" alt="">
 </div>
-
-<img src="mrpeeky.png" class="peeky" id="peeky" draggable="false" alt="">
-<img src="hero-mobile.png" class="heroMobile" id="heroMobile" draggable="false" alt="">
 
 <div class="hello" id="hello">
 <span id="typed"></span><span class="cursor">|</span>
@@ -327,72 +269,42 @@ letter-spacing:3px;
 <div class="coming" id="coming">
 <h1>COMING SOON</h1>
 
-<a class="igLink" href="https://instagram.com/mrpeeky.art" target="_blank" rel="noopener">
-<span class="igIcon">
-<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
-<path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Zm10.25 1.75a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7a5 5 0 0 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/>
-</svg>
-</span>
+<a class="igLink" href="https://instagram.com/mrpeeky.art" target="_blank">
+<span class="igIcon">📷</span>
 Instagram: @mrpeeky.art
 </a>
 </div>
 
-<div class="footer">© <span id="year"></span> Mr.Peeky. All rights reserved.</div>
+<div class="footer">© <span id="year"></span> Mr.Peeky</div>
 <div class="fadeBottom"></div>
 
 </div>
 </div>
 
 <script>
-document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("year").textContent=new Date().getFullYear();
 
-/* ✅ “MAX” CLIENT-SIDE PROTECTION (not 100% possible, but best-effort) */
-document.addEventListener("contextmenu", e => e.preventDefault());
-document.addEventListener("dragstart", e => e.preventDefault());
-document.addEventListener("selectstart", e => e.preventDefault());
+document.addEventListener("contextmenu",e=>e.preventDefault());
+document.addEventListener("dragstart",e=>e.preventDefault());
 
-document.addEventListener("keydown", function(e){
-const k = (e.key || "").toLowerCase();
-if (
-(e.ctrlKey || e.metaKey) && (k === "s" || k === "u" || k === "p" || k === "c")
-){
-e.preventDefault();
-}
-if (k === "printscreen") {
-e.preventDefault();
-}
-});
+const brand=document.getElementById("brand");
+const hello=document.getElementById("hello");
+const coming=document.getElementById("coming");
 
-/* Reveal layers */
-const brand = document.getElementById("brand");
-const peeky = document.getElementById("peeky");
-const heroMobile = document.getElementById("heroMobile");
-const hello = document.getElementById("hello");
-const coming = document.getElementById("coming");
-
-const isMobile = window.matchMedia("(max-width:768px)").matches;
-
-setTimeout(() => brand.classList.add("show"), 400);
-
-setTimeout(() => {
-if (isMobile) heroMobile.classList.add("show");
-else peeky.classList.add("show");
-}, 2600);
-
-setTimeout(() => {
+setTimeout(()=>brand.classList.add("show"),400);
+setTimeout(()=>{
 hello.classList.add("show");
-typeText("HELLO WORLD", 110);
-}, 4700);
+typeText("HELLO WORLD",110);
+},2500);
+setTimeout(()=>coming.classList.add("show"),6000);
 
-setTimeout(() => coming.classList.add("show"), 8500);
-
-function typeText(text, speed){
-const el = document.getElementById("typed");
-let i = 0;
+function typeText(text,speed){
+const el=document.getElementById("typed");
+let i=0;
 (function t(){
-if (i <= text.length){
-el.textContent = text.slice(0, i++);
-setTimeout(t, speed);
+if(i<=text.length){
+el.textContent=text.slice(0,i++);
+setTimeout(t,speed);
 }
 })();
 }
@@ -400,3 +312,4 @@ setTimeout(t, speed);
 
 </body>
 </html>
+
