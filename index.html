@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Mr.Peeky — Coming Soon</title>
+
+<link rel="icon" href="/favicon.ico?v=4" type="image/x-icon">
+
+<meta name="description" content="Mr.Peeky is coming soon. A playful character exploring a new world. Follow the journey and be part of what’s next.">
+
+<meta property="og:title" content="Mr.Peeky — Coming Soon">
+<meta property="og:description" content="Something playful is coming. Meet Mr. Peeky.">
+<meta property="og:url" content="https://mrpeeky.com">
+<meta property="og:type" content="website">
+
+<style>
+html,body{
+height:100%;
+margin:0;
+font-family:Arial, sans-serif;
+background:#000;
+overflow:hidden;
+-webkit-user-select:none;
+user-select:none;
+-webkit-touch-callout:none;
+}
+
+.scene{
+position:relative;
+height:100%;
+background:url("space.jpg") center/cover no-repeat;
+}
+
+/* STAR FIELD */
+.scene::before,
+.scene::after{
+content:"";
+position:absolute;
+inset:-10%;
+background:
+radial-gradient(circle, rgba(255,255,255,.9) 0 1px, transparent 2px)
+0 0/140px 140px;
+opacity:.10;
+pointer-events:none;
+animation:drift 120s linear infinite;
+}
+.scene::after{
+background-size:220px 220px;
+opacity:.06;
+animation:drift 180s linear infinite, twinkle 6s ease-in-out infinite;
+}
+
+@keyframes drift{
+from{transform:translate(0,0);}
+to{transform:translate(-140px,90px);}
+}
+@keyframes twinkle{
+0%,100%{opacity:.05;}
+50%{opacity:.16;}
+}
+
+.wrap{
+position:relative;
+width:100%;
+height:100%;
+}
+
+/* LAYERS */
+.earth,.peeky,.heroMobile,.horizonGlow{z-index:10;}
+.watermarkOverlay{z-index:15;}
+.brand{z-index:60;}
+.hello{z-index:70;}
+.coming{z-index:70;}
+.footer{z-index:80;}
+.fadeBottom{z-index:90;}
+
+/* WATERMARK OVERLAY */
+.watermarkOverlay{
+position:absolute;
+inset:0;
+background-image:url("watermark.png");
+background-repeat:repeat;
+background-size:220px 220px;
+opacity:.08;
+pointer-events:none;
+transform:rotate(-18deg);
+}
+
+/* EARTH */
+.earth{
+position:absolute;
+left:50%;
+bottom:0;
+transform:translateX(-50%);
+width:1100px;
+max-width:120vw;
+filter:drop-shadow(0 0 40px rgba(80,190,255,.55));
+}
+
+/* HORIZON */
+.horizonGlow{
+position:absolute;
+left:50%;
+bottom:120px;
+transform:translateX(-50%);
+width:900px;
+height:140px;
+background:radial-gradient(ellipse at center,
+rgba(0,180,255,.35) 0%,
+rgba(0,180,255,.15) 35%,
+rgba(0,0,0,0) 70%);
+filter:blur(22px);
+animation:horizonPulse 2s ease-in-out infinite;
+pointer-events:none;
+}
+@keyframes horizonPulse{
+0%,100%{opacity:.5;}
+50%{opacity:.75;}
+}
+
+/* BRAND */
+.brand{
+position:absolute;
+left:250px;
+top:35%;
+transform:translateY(-50%) translateX(-12px);
+opacity:0;
+transition:.9s;
+}
+.brand.show{
+opacity:1;
+transform:translateY(-50%) translateX(0);
+}
+.brand img{width:240px;}
+
+/* PEEKY */
+.peeky{
+position:absolute;
+left:50%;
+bottom:185px;
+transform:translateX(-50%) translateY(16px);
+width:520px;
+opacity:0;
+transition:.9s;
+}
+.peeky.show{
+opacity:1;
+transform:translateX(-50%) translateY(0);
+}
+
+/* MOBILE HERO */
+.heroMobile{
+display:none;
+position:absolute;
+left:50%;
+bottom:0;
+transform:translateX(-50%) translateY(16px);
+width:1200px;
+max-width:140vw;
+filter:drop-shadow(0 0 40px rgba(80,190,255,.55));
+opacity:0;
+transition:.9s;
+pointer-events:none;
+}
+.heroMobile.show{
+opacity:1;
+transform:translateX(-50%) translateY(0);
+}
+
+/* HELLO */
+.hello{
+position:absolute;
+left:50%;
+bottom:80px;
+transform:translateX(-50%);
+font-size:78px;
+letter-spacing:10px;
+font-weight:bold;
+white-space:nowrap;
+color:white;
+text-shadow:
+0 0 15px rgba(0,180,255,.7),
+0 0 40px rgba(0,180,255,.5);
+opacity:0;
+transition:.6s;
+}
+.hello.show{opacity:1;}
+
+.cursor{
+margin-left:8px;
+animation:blink .9s infinite;
+}
+@keyframes blink{50%{opacity:0;}}
+
+/* COMING */
+.coming{
+position:absolute;
+right:30px;
+top:50%;
+transform:translateY(-50%) translateX(12px);
+opacity:0;
+transition:.9s;
+color:white;
+text-align:right;
+}
+.coming.show{
+opacity:1;
+transform:translateY(-50%) translateX(0);
+}
+.coming h1{
+margin:0;
+letter-spacing:4px;
+font-size:42px;
+}
+
+/* INSTAGRAM */
+.igLink{
+display:inline-flex;
+align-items:center;
+justify-content:flex-end;
+gap:8px;
+margin-top:10px;
+color:white;
+text-decoration:none;
+opacity:.85;
+font-size:14px;
+}
+.igLink:hover{opacity:1;text-decoration:underline;}
+.igIcon{
+display:inline-flex;
+width:26px;
+height:26px;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+background:rgba(255,255,255,.10);
+border:1px solid rgba(255,255,255,.18);
+box-shadow:0 0 18px rgba(0,0,0,.4);
+}
+
+/* FOOTER */
+.footer{
+position:absolute;
+bottom:18px;
+left:50%;
+transform:translateX(-50%);
+font-size:11px;
+opacity:.45;
+color:white;
+pointer-events:none;
+}
+
+/* MICRO FADE */
+.fadeBottom{
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+height:140px;
+background:linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,0));
+pointer-events:none;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+.earth,.peeky,.horizonGlow{display:none;}
+
+.heroMobile{
+display:block;
+width:160vw;
+bottom:30px;
+}
+
+.brand{
+left:50%;
+top:25%;
+transform:translateX(-50%);
+}
+.brand img{width:180px;}
+
+.hello{
+font-size:44px;
+letter-spacing:3px;
+bottom:58px;
+}
+
+.coming{
+right:55px;
+top:10%;
+transform:none;
+}
+.coming h1{
+font-size:30px;
+letter-spacing:3px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+<div class="wrap">
+
+<div class="watermarkOverlay"></div>
+
+<img src="earth.png" class="earth" draggable="false">
+<div class="horizonGlow"></div>
+
+<div class="brand" id="brand">
+<img src="logo.png" draggable="false">
+</div>
+
+<img src="mrpeeky.png" class="peeky" id="peeky" draggable="false">
+<img src="hero-mobile.png" class="heroMobile" id="heroMobile" draggable="false">
+
+<div class="hello" id="hello">
+<span id="typed"></span><span class="cursor">|</span>
+</div>
+
+<div class="coming" id="coming">
+<h1>COMING SOON</h1>
+
+<a class="igLink" href="https://instagram.com/mrpeeky.art" target="_blank">
+<span class="igIcon">
+<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+<path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Zm10.25 1.75a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7a5 5 0 0 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/>
+</svg>
+</span>
+Instagram: @mrpeeky.art
+</a>
+</div>
+
+<div class="footer">© <span id="year"></span> Mr.Peeky. All rights reserved.</div>
+<div class="fadeBottom"></div>
+
+</div>
+</div>
+
+<script>
+document.getElementById("year").textContent=new Date().getFullYear();
+
+/* BLOCK SAVE */
+document.addEventListener("contextmenu",e=>e.preventDefault());
+document.addEventListener("dragstart",e=>e.preventDefault());
+document.addEventListener("selectstart",e=>e.preventDefault());
+
+const brand=document.getElementById("brand");
+const peeky=document.getElementById("peeky");
+const heroMobile=document.getElementById("heroMobile");
+const hello=document.getElementById("hello");
+const coming=document.getElementById("coming");
+
+const isMobile=window.matchMedia("(max-width:768px)").matches;
+
+setTimeout(()=>brand.classList.add("show"),400);
+
+setTimeout(()=>{
+if(isMobile) heroMobile.classList.add("show");
+else peeky.classList.add("show");
+},2600);
+
+setTimeout(()=>{
+hello.classList.add("show");
+typeText("HELLO WORLD",110);
+},4700);
+
+setTimeout(()=>coming.classList.add("show"),8500);
+
+function typeText(text,speed){
+const el=document.getElementById("typed");
+let i=0;
+(function t(){
+if(i<=text.length){
+el.textContent=text.slice(0,i++);
+setTimeout(t,speed);
+}
+})();
+}
+</script>
+
+</body>
+</html>
