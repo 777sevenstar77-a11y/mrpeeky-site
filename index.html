@@ -116,7 +116,7 @@ animation:horizonPulse 2s ease-in-out infinite;
 50%{opacity:.75;}
 }
 
-/* LOGO CENTER */
+/* LOGO */
 .brand{
 position:absolute;
 left:50%;
@@ -223,10 +223,19 @@ background:linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,0));
 
 /* MOBILE */
 @media(max-width:768px){
-.earth,.horizonGlow{display:none;}
+
+.horizonGlow{display:none;}
+
+.earth{
+display:block;
+width:140vw;
+bottom:-120px;
+filter:blur(2px) drop-shadow(0 0 25px rgba(80,190,255,.45));
+opacity:.75;
+}
 
 .brand{
-top:25%;
+top:38%;
 }
 .brand img{width:180px;}
 
@@ -292,10 +301,12 @@ const hello=document.getElementById("hello");
 const coming=document.getElementById("coming");
 
 setTimeout(()=>brand.classList.add("show"),400);
+
 setTimeout(()=>{
 hello.classList.add("show");
 typeText("HELLO WORLD",110);
 },2500);
+
 setTimeout(()=>coming.classList.add("show"),6000);
 
 function typeText(text,speed){
@@ -312,4 +323,3 @@ setTimeout(t,speed);
 
 </body>
 </html>
-
