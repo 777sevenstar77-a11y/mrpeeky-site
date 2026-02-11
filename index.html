@@ -6,7 +6,11 @@
 
 <title>Mr.Peeky — Coming Soon</title>
 
-<link rel="icon" href="/favicon.ico?v=4" type="image/x-icon">
+<!-- ✅ FAVICON (GitHub Pages friendly: NO leading /) -->
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<!-- Optional PNG fallback (if you also upload favicon.png) -->
+<link rel="icon" type="image/png" href="favicon.png">
 
 <meta name="description" content="Mr.Peeky is coming soon. A playful character exploring a new world. Follow the journey and be part of what’s next.">
 
@@ -306,15 +310,15 @@ letter-spacing:3px;
 
 <div class="watermarkOverlay"></div>
 
-<img src="earth.png" class="earth" draggable="false">
+<img src="earth.png" class="earth" draggable="false" alt="">
 <div class="horizonGlow"></div>
 
 <div class="brand" id="brand">
-<img src="logo.png" draggable="false">
+<img src="logo.png" draggable="false" alt="">
 </div>
 
-<img src="mrpeeky.png" class="peeky" id="peeky" draggable="false">
-<img src="hero-mobile.png" class="heroMobile" id="heroMobile" draggable="false">
+<img src="mrpeeky.png" class="peeky" id="peeky" draggable="false" alt="">
+<img src="hero-mobile.png" class="heroMobile" id="heroMobile" draggable="false" alt="">
 
 <div class="hello" id="hello">
 <span id="typed"></span><span class="cursor">|</span>
@@ -323,9 +327,9 @@ letter-spacing:3px;
 <div class="coming" id="coming">
 <h1>COMING SOON</h1>
 
-<a class="igLink" href="https://instagram.com/mrpeeky.art" target="_blank">
+<a class="igLink" href="https://instagram.com/mrpeeky.art" target="_blank" rel="noopener">
 <span class="igIcon">
-<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
 <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Zm10.25 1.75a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7a5 5 0 0 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/>
 </svg>
 </span>
@@ -340,42 +344,55 @@ Instagram: @mrpeeky.art
 </div>
 
 <script>
-document.getElementById("year").textContent=new Date().getFullYear();
+document.getElementById("year").textContent = new Date().getFullYear();
 
-/* BLOCK SAVE */
-document.addEventListener("contextmenu",e=>e.preventDefault());
-document.addEventListener("dragstart",e=>e.preventDefault());
-document.addEventListener("selectstart",e=>e.preventDefault());
+/* ✅ “MAX” CLIENT-SIDE PROTECTION (not 100% possible, but best-effort) */
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.addEventListener("dragstart", e => e.preventDefault());
+document.addEventListener("selectstart", e => e.preventDefault());
 
-const brand=document.getElementById("brand");
-const peeky=document.getElementById("peeky");
-const heroMobile=document.getElementById("heroMobile");
-const hello=document.getElementById("hello");
-const coming=document.getElementById("coming");
+document.addEventListener("keydown", function(e){
+const k = (e.key || "").toLowerCase();
+if (
+(e.ctrlKey || e.metaKey) && (k === "s" || k === "u" || k === "p" || k === "c")
+){
+e.preventDefault();
+}
+if (k === "printscreen") {
+e.preventDefault();
+}
+});
 
-const isMobile=window.matchMedia("(max-width:768px)").matches;
+/* Reveal layers */
+const brand = document.getElementById("brand");
+const peeky = document.getElementById("peeky");
+const heroMobile = document.getElementById("heroMobile");
+const hello = document.getElementById("hello");
+const coming = document.getElementById("coming");
 
-setTimeout(()=>brand.classList.add("show"),400);
+const isMobile = window.matchMedia("(max-width:768px)").matches;
 
-setTimeout(()=>{
-if(isMobile) heroMobile.classList.add("show");
+setTimeout(() => brand.classList.add("show"), 400);
+
+setTimeout(() => {
+if (isMobile) heroMobile.classList.add("show");
 else peeky.classList.add("show");
-},2600);
+}, 2600);
 
-setTimeout(()=>{
+setTimeout(() => {
 hello.classList.add("show");
-typeText("HELLO WORLD",110);
-},4700);
+typeText("HELLO WORLD", 110);
+}, 4700);
 
-setTimeout(()=>coming.classList.add("show"),8500);
+setTimeout(() => coming.classList.add("show"), 8500);
 
-function typeText(text,speed){
-const el=document.getElementById("typed");
-let i=0;
+function typeText(text, speed){
+const el = document.getElementById("typed");
+let i = 0;
 (function t(){
-if(i<=text.length){
-el.textContent=text.slice(0,i++);
-setTimeout(t,speed);
+if (i <= text.length){
+el.textContent = text.slice(0, i++);
+setTimeout(t, speed);
 }
 })();
 }
